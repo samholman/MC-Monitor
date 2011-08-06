@@ -29,6 +29,7 @@
         <modelFile modelName="Player"/>
         <modelFile modelName="PlayerData"/>
         <modelFile modelName="PlayerList"/>
+        <modelFile modelName="Iterator"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
