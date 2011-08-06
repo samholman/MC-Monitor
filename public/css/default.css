@@ -50,10 +50,6 @@ body {
 	float: right; 
 }
 
-.mapBox { 
-	width: 100%;
-}
-
 
 /* ------------------------------------------ Default Text ------------------------------------------ */
 p {
@@ -81,6 +77,7 @@ h3 {
 a {
 	color: #000;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 a:hover {
@@ -202,5 +199,44 @@ a:hover {
 	margin-bottom: 20px;
 	background: url("/images/fail.jpg") no-repeat;
 }
+
+
+/* ------------------------------------------ Dashboard ------------------------------------------ */
+.mapBox {
+	min-height:200px;
+}
+
+.mapBox { 
+	width: 100%;
+	margin-bottom: 20px;
+	border: 1px solid red;
+}
+
+.serverStats { 
+	width: 100%;
+}
+
+.players { 
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.player {
+	margin-bottom: 5px;
+}
+
+.player a {
+	color: #000;
+}
+
+.online a {
+	color: #009900;
+}
+
+.chat { 
+	width: 100%;
+}
+
+
 
 
