@@ -17,6 +17,7 @@
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
         <modelFile modelName="Server"/>
+        <modelFile modelName="User"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
