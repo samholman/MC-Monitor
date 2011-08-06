@@ -27,6 +27,8 @@ class Application_Model_NBTFile
 		$this->parseData($data, $output);
 		print_r($data);
 		print_r($output);
+		
+		//var_dump(ord($data[18]));
 	}
 
 	/**
@@ -101,8 +103,7 @@ class Application_Model_NBTFile
 				break;
 				
 			case self::TAG_LIST:
-				//$name = $this->parseTagName($data);
-				//$current[$name] = $this->parseInt($data, 8);
+				$current[$name] = $this->parseList($data);
 				break;
 		}
 	}
@@ -162,6 +163,26 @@ class Application_Model_NBTFile
 		}
 		
 		return $number;
+	}
+	
+	/**
+	 * parse the next part of the file as a list
+	 * 
+	 * @param array $data
+	 * @return string
+	 */
+	private function parseList(&$data)
+	{
+		$output = array();
+		$tag = ord(next($data));
+		$length = ord(next($data));
+		
+		for ($i=0; $i<$length; $i++)
+		{
+			//$output[] = 
+		}
+
+		return $output;
 	}
 }
 
