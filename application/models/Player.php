@@ -17,9 +17,7 @@ class Application_Model_Player
 		
 		if (file_exists($this->getDatFilePath()))
 		{
-			$data = $this->getPlayerData();
-			
-			//$data = gzfile($this->getDatFilePath());
+			//$data = $this->getPlayerData();
 			
 			return true;
 		}
