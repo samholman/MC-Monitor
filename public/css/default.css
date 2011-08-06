@@ -39,7 +39,7 @@ ul, ol { list-style: none }
 .right {
 	width: 38%;
 	border: 1px solid #000;
-	float: right;
+	float: right; 
 }
 
 .mapBox { 
