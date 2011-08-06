@@ -2,7 +2,10 @@
 
 class Application_Model_Player
 {
+	private 
+		$_username;
 
+	
 	/**
 	 * Loads a players data
 	 * 
@@ -11,6 +14,17 @@ class Application_Model_Player
 	 */
 	public function load($username)
 	{
+		$this->_username = $username;
+		
+		if (file_exists($this->getDatFilePath()))
+		{
+			$data = $this->getPlayerData();
+			
+			//$data = gzfile($this->getDatFilePath());
+			
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -52,6 +66,29 @@ class Application_Model_Player
 	public function getHealth()
 	{
 		return null;
+	}
+	
+	/**
+	 * Returns the filepath for the players dat file
+	 * 
+	 * @return string
+	 */
+	private function getDatFilePath()
+	{
+		return Zend_Registry::get('config')->get('minecraft')->get('worldPath') . '/world/players/' . $this->_username . '.dat';
+	}
+	
+	/**
+	 * Returns a loaded player data object
+	 * 
+	 * @return Application_Model_PlayerData
+	 */
+	private function getPlayerData()
+	{
+		$data = new Application_Model_PlayerData();
+		$data->load($this->getDatFilePath());
+		
+		return $data;
 	}
 }
 

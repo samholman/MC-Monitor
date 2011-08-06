@@ -27,6 +27,7 @@
         <modelFile modelName="Server"/>
         <modelFile modelName="User"/>
         <modelFile modelName="Player"/>
+        <modelFile modelName="PlayerData"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

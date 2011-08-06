@@ -4,7 +4,8 @@ class PlayerModelTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->bootstrap = new Zend_Application(APPLICATION_ENV, APPLICATION_PATH . '/configs/application.ini');
+        $this->application = new Zend_Application(APPLICATION_ENV, APPLICATION_PATH . '/configs/application.ini');
+        $this->application->bootstrap();
         parent::setUp();
     }
     
@@ -13,7 +14,7 @@ class PlayerModelTest extends PHPUnit_Framework_TestCase
     	$player = new Application_Model_Player();
     }
     
-	public function testLoadPlayer()
+	public function testLoadBadPlayer()
     {
     	$player = new Application_Model_Player();
     	$this->assertFalse($player->load('badplayer'));
@@ -41,5 +42,11 @@ class PlayerModelTest extends PHPUnit_Framework_TestCase
     {
     	$player = new Application_Model_Player();
     	$this->assertNull($player->getHealth());
+    }
+    
+	public function testLoadPlayer()
+    {
+    	$player = new Application_Model_Player();
+    	$this->assertTrue($player->load('taraka'));
     }
 }
