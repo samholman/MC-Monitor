@@ -12,8 +12,8 @@ class NBTFileModelTest extends PHPUnit_Framework_TestCase
  	public function testParser()
     {
     	$file = new Application_Model_NBTFile();
-    	$data = $file->load('http://wiki.vg/nbt/test.nbt');
-    	//$data = $file->load('/opt/local/minecraft/world/players/taraka.dat');
+    	//$data = $file->load('http://wiki.vg/nbt/test.nbt');
+    	$data = $file->load('/opt/local/minecraft/world/players/taraka.dat');
     }
 	
 }
