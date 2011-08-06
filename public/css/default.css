@@ -42,7 +42,7 @@ ul, ol { list-style: none }
 	float: right;
 }
 
-.mapBox {
+.mapBox { 
 	width: 100%;
 	height: 300px;
 	border: 1px solid red;
