@@ -41,7 +41,7 @@ class Application_Model_Player
 	/**
 	 * Returns a players location object or null if not avaliable
 	 * 
-	 * @return Application_Model_Player_Location
+	 * @return Application_Model_PlayerLocation
 	 */
 	public function getLocation()
 	{
@@ -51,7 +51,7 @@ class Application_Model_Player
 	/**
 	 * Returns a players skin object or null if not avaliable
 	 * 
-	 * @return Application_Model_Player_Skin
+	 * @return Application_Model_PlayerSkin
 	 */
 	public function getSkin()
 	{
