@@ -10,15 +10,17 @@
 	
 	<div class="right">
 		<div class="players">
-			<ul>
-				<?php 
-					foreach ($this->playerList as $player) {
-						echo '<li>' . $player->getUsername() . ' (' . ($player->isOnline() ? 'online' : 'offline'). ')</li>';
-					}
-				?>
-			</ul>
-
 			<h2>Players</h2>
+			<?php 
+				foreach ($this->playerList as $player) { ?>
+					<div class="player online">
+						<a class="name"><?php $player->getUsername(); ?> <span class="status">(<?php $player->isOnline() ? 'online' : 'offline';?>)</span></a>
+						<div class="info"></div>
+					</div>
+			<?php 
+				}
+			?>
+				
 			<div class="player online">
 				<a class="name">Name <span class="status">(online)</span></a>
 				<div class="info"></div>
