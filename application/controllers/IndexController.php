@@ -11,6 +11,13 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+    	$session = new Zend_Session_Namespace();
+    	
+        if (!$session->username) {
+        	$this->_forward('index', 'login');
+        }
         
+        $playerList = Application_Model_PlayerList::get();
+        $this->view->playerList = $playerList->getIterator();
     }
 }

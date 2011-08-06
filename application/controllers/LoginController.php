@@ -24,7 +24,9 @@ class LoginController extends Zend_Controller_Action
 	        	}
 	        	else 
 	        	{
-	        		echo 'Authenticated as: ' . $user->getUsername();
+	        		$session = new Zend_Session_Namespace();
+	        		$session->username = $user->getUsername();
+	        		$this->_forward('index', 'index');
 	        	}
 	        }
         }
