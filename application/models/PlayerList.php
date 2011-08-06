@@ -48,7 +48,10 @@ class Application_Model_PlayerList
 			if ($fileinfo->isFile())
 			{
 				$player = new Application_Model_Player();
-				$player->load($fileinfo->getBasename('.dat'));
+				
+				if ($player->load($fileinfo->getBasename('.dat'))) {
+					$this->_players[] = $player;
+				}
 			}
 		}
 	}

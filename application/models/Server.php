@@ -7,7 +7,8 @@ class Application_Model_Server
 {
 	const
 		COMMANDS_FILE = '/tmp/mc-monitor-commands',
-		RESULTS_FILE  = '/tmp/mc-monitor-results';
+		RESULTS_FILE  = '/tmp/mc-monitor-results',
+		PID_FILE  = '/tmp/mc-monitor-pid';
 	
 	private
 		$_pid,
@@ -26,7 +27,7 @@ class Application_Model_Server
 	 */
 	public function isRunning()
 	{
-		return is_resource($this->_process);
+		return file_exists(self::PID_FILE);
 	}
 	
 	/**
@@ -40,9 +41,13 @@ class Application_Model_Server
 		$worldPath = Zend_Registry::get('config')->get('minecraft')->get('worldPath');
 		
 		$this->_process = proc_open('java -Xmx1024M -Xms1024M -jar ' . $jarPath . ' nogui 2>&1', $this->_descriptorSpec, $this->_pipes, $worldPath);
+		$status = proc_get_status($this->_process);
+		file_put_contents(self::PID_FILE, $status['pid']);
 		
 		if ($this->isRunning())
 		{
+			register_shutdown_function(array('Application_Model_Server', 'shutdownHandler'));
+			
 			stream_set_blocking($this->_pipes[0], false);
 			stream_set_blocking($this->_pipes[1], false);
 			stream_set_blocking($this->_pipes[2], false);
@@ -81,13 +86,30 @@ class Application_Model_Server
 	 */
 	public function stop()
 	{
-		fclose($this->_pipes[0]);
-		fclose($this->_pipes[1]);
-		fclose($this->_pipes[2]);
-		
-		$status = proc_get_status($this->_process);
-		exec('kill ' . $status['pid']);
-		return proc_close($this->_process);
+		if ($this->isRunning())
+		{
+			fclose($this->_pipes[0]);
+			fclose($this->_pipes[1]);
+			fclose($this->_pipes[2]);
+			
+			//$status = proc_get_status($this->_process);
+			//exec('kill ' . $status['pid']);
+			
+			self::shutdownHandler();
+			return proc_close($this->_process);
+		}
+	}
+	
+	/**
+	 * Delete the temp files
+	 * 
+	 * @return void
+	 */
+	public static function shutdownHandler()
+	{
+		unlink(self::COMMANDS_FILE);
+		unlink(self::RESULTS_FILE);
+		unlink(self::PID_FILE);
 	}
 	
 	/**
@@ -98,6 +120,10 @@ class Application_Model_Server
 	 */
 	public function runCommand($command)
 	{
+		if (!$this->isRunning()) {
+			throw new Zend_Exception('server_not_running');
+		}
+		
 		file_put_contents(self::COMMANDS_FILE, trim($command) . "\n");
 		$result = false;
 		

@@ -33,8 +33,8 @@ class Application_Model_Iterator implements Iterator
 	
 	public function valid()
 	{
-		$key = key($this->var);
-		$var = ($key !== NULL && $key !== FALSE);
+		$key = key($this->_items);
+		$var = ($key !== null && $key !== false);
 		return $var;
 	}
 	

@@ -9,6 +9,13 @@
 	
 	<div class="right">
 		<div class="players">
+			<ul>
+				<?php 
+					foreach ($this->playerList as $player) {
+						echo '<li>' . $player->getUsername() . ' (' . ($player->isOnline() ? 'online' : 'offline'). ')</li>';
+					}
+				?>
+			</ul>
 		</div>
 		<div class="chat">
 		</div>
