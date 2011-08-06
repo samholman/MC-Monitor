@@ -9,15 +9,12 @@ class ServerModelTest extends PHPUnit_Framework_TestCase
         parent::setUp();
     }
     
-    public function testStartStop()
+    public function testGetOnlinePlayers()
     {
     	$server = new Application_Model_Server();
-    	$this->assertFalse($server->isRunning());
+    	$playersArray = $server->getOnlinePlayers();
     	
-    	$this->assertTrue($server->start());
-    	var_dump($server->getOutput());
-    	
-    	$this->assertTrue($server->isRunning());
-    	$server->stop();
+    	$this->assertInternalType('array', $playersArray);
+    	//print_r($playersArray);
     }
 }
