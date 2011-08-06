@@ -206,7 +206,7 @@ class Application_Model_Server
 	 */
 	public function getProperties()
 	{
-		$path = Zend_Registry::get('config')->get('minecraft')->get('worldPath') . 'server.properties';
+		$path = Zend_Registry::get('config')->get('minecraft')->get('worldPath') . '/server.properties';
 		
 		if (!file_exists($path)) {
 			throw new Exception('Server properties file not found');
