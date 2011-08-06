@@ -52,7 +52,7 @@ class Application_Model_User
 	}
 	
 	/**
-	 * Gets the player object for the authenticated player or null if no object
+	 * Returns the player object for the authenticated player or null if no object
 	 * 
 	 * @return Application_Model_Player
 	 */

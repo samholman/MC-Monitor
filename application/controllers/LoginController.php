@@ -2,7 +2,6 @@
 
 class LoginController extends Zend_Controller_Action
 {
-
     public function init()
     {
         $this->view->header = $this->view->render('header.phtml');
@@ -34,7 +33,4 @@ class LoginController extends Zend_Controller_Action
 	   	$form->render($this->view);
         
     }
-
-
 }
-
