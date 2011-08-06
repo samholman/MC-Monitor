@@ -208,7 +208,7 @@ class Application_Model_Server
 	{
 		$path = Zend_Registry::get('config')->get('minecraft')->get('worldPath') . 'server.properties';
 		
-		if (!file_exisits($path)) {
+		if (!file_exists($path)) {
 			throw new Exception('Server properties file not found');
 		}
 		
