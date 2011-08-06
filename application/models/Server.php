@@ -127,12 +127,18 @@ class Application_Model_Server
 				$players = substr($players, 46);
 				$playersArray = explode(',', $players);
 				
-				foreach ($playersArray as &$player) {
+				foreach ($playersArray as $key => &$player)
+				{
 					$player = trim($player);
+					
+					if (empty($player)) {
+						unset($playersArray[$key]);
+					}
 				}
 			}
 		}
 		while (!is_array($playersArray));
+		
 		return $playersArray;
 	}
 }

@@ -28,6 +28,7 @@
         <modelFile modelName="User"/>
         <modelFile modelName="Player"/>
         <modelFile modelName="PlayerData"/>
+        <modelFile modelName="PlayerList"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

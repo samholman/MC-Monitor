@@ -5,7 +5,6 @@ class Application_Model_Player
 	private 
 		$_username;
 
-	
 	/**
 	 * Loads a players data
 	 * 
@@ -35,7 +34,27 @@ class Application_Model_Player
 	 */
 	public function isOnline()
 	{
+		$server = new Application_Model_Server();
+		$players = $server->getOnlinePlayers();
+		
+		foreach ($players as $player)
+		{
+			if ($player == $this->getUsername()) {
+				return true;
+			}
+		}
+		
 		return false;
+	}
+	
+	/**
+	 * Returns this player's username
+	 * 
+	 * @return string
+	 */
+	public function getUsername()
+	{
+		return $this->_username;
 	}
 	
 	/**
