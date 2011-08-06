@@ -104,7 +104,7 @@ class Application_Model_Player
 	 */
 	private function getPlayerData()
 	{
-		$data = new Application_Model_PlayerData();
+		$data = new Application_Model_NBTFile();
 		$data->load($this->getDatFilePath());
 		
 		return $data;
