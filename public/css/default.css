@@ -10,7 +10,7 @@ summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, tr, tt, u, ul,
 	border: 0;
 	outline: 0;
 	font-size: 1em;
-	font-family: Arial, sans-serif;
+	font-family: 'Geo', Georgia, times, sans-serif;
 	vertical-align: baseline;
 }
 
@@ -23,30 +23,68 @@ ul, ol { list-style: none }
 .clear { clear: both; }
 
 /* ------------------------------------------ Start Site Styling ------------------------------------------ */
+body {
+	font-size: 15px;
+}
+
 .pageContainer {
 	width: 80%;
 	min-width: 300px;
-	border: 1px solid #000;
 	margin: 0 auto;
 }
 
 .left { 
 	width: 60%;
-	border: 1px solid #000;
 	float: left;
 }
 
 .right {
 	width: 38%;
-	border: 1px solid #000;
 	float: right; 
 }
 
 .mapBox { 
 	width: 100%;
-	height: 300px;
-	border: 1px solid red;
 }
+
+
+/* ------------------------------------------ Default Text ------------------------------------------ */
+p {
+	margin-bottom: 20px;
+}
+
+h1 {
+	margin-bottom: 20px;
+	font-family: 'VT323', cursive;
+	font-size: 24px;
+}
+
+h2 {
+	margin-bottom: 20px;
+	font-family: 'VT323', cursive;
+	font-size: 22px;
+}
+
+h3 {
+	margin-bottom: 20px;
+	font-family: 'VT323', cursive;
+	font-size: 20px;
+}
+
+
+/* ------------------------------------------ Login Form ------------------------------------------ */
+.loginForm label {
+	margin-bottom: 10px;
+	display: block;
+}
+
+.loginForm input {
+	margin-bottom: 10px;
+	display: block;
+}
+
+
+
 
 
 
