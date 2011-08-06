@@ -24,13 +24,19 @@ ul, ol { list-style: none }
 
 /* ------------------------------------------ Start Site Styling ------------------------------------------ */
 body {
+	background: url("/images/bg.png") repeat;
 	font-size: 15px;
 }
 
 .pageContainer {
-	width: 80%;
-	min-width: 300px;
+	width: 85%;
+	min-width: 500px;
 	margin: 0 auto;
+	padding: 20px;
+	background: #ccc;
+	-moz-box-shadow: 0px 0px 10px #333;
+	-webkit-box-shadow: 0px 0px 10px #333;
+	box-shadow: 0px 0px 10px #333;
 }
 
 .left { 
