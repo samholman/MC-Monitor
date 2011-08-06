@@ -26,6 +26,7 @@ ul, ol { list-style: none }
 body {
 	background: url("/images/bg.png") repeat;
 	font-size: 15px;
+	color: #000;
 }
 
 .pageContainer {
@@ -33,7 +34,7 @@ body {
 	min-width: 500px;
 	margin: 0 auto;
 	padding: 20px;
-	background: #ccc;
+	background: #c8c8c8;
 	-moz-box-shadow: 0px 0px 10px #333;
 	-webkit-box-shadow: 0px 0px 10px #333;
 	box-shadow: 0px 0px 10px #333;
@@ -53,6 +54,58 @@ body {
 	width: 100%;
 }
 
+
+/* ------------------------------------------ Header ------------------------------------------ */
+.header {
+	height: 110px;
+	position: relative;
+	overflow: hidden;
+}
+
+.header .logo {
+	width: 110px;
+	height: 110px;
+	background: url("/images/logo.png") no-repeat;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+}
+
+.header .nav {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	float: right;
+}
+
+.header .nav ul {
+	list-style: none;
+}
+
+.header .nav li {
+	margin-left: 20px;
+	float: left;
+}
+
+.header .nav a {
+	font-family: 'VT323', cursive;
+	font-size: 24px;
+	color: #000;
+	text-decoration: none;
+}
+
+.header .nav a:hover {
+	text-decoration: underline;
+}
+
+.header .bar {
+	width: 100%;
+	height: 30px;
+	background: #666;
+	position: absolute;
+	bottom: 0px;
+	z-index: 1;
+}
 
 /* ------------------------------------------ Default Text ------------------------------------------ */
 p {
