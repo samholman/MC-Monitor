@@ -202,4 +202,32 @@ class Application_Model_Server
 		
 		return $playersArray;
 	}
+	
+	/**
+	 * Fetches the server properties
+	 * 
+	 * @return array
+	 */
+	public function getProperties()
+	{
+		$path = Zend_Registry::get('config')->get('minecraft')->get('worldPath') . '/server.properties';
+		
+		if (!file_exists($path)) {
+			throw new Exception('Server properties file not found');
+		}
+		
+		$fileData = file_get_contents($path);
+		
+		$data = explode("\n", $fileData);
+		
+		$output = array();
+		
+		foreach ($data as $property)
+		{
+			list($key, $value) = explode('=', $property, 2);
+			$output[$key] = $value;
+		}
+		
+		return $output;
+	}
 }

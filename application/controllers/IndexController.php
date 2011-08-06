@@ -34,5 +34,8 @@ class IndexController extends Zend_Controller_Action
     {
     	$playerList = Application_Model_PlayerList::get();
     	$this->view->playerList = $playerList->getIterator();
+    	
+    	$server = new Application_Model_Server();
+    	$this->view->serverProperties = $server->getProperties();
     }
 }
