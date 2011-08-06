@@ -61,19 +61,19 @@ p {
 }
 
 h1 {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	font-family: 'VT323', cursive;
 	font-size: 28px;
 }
 
 h2 {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	font-family: 'VT323', cursive;
 	font-size: 26px;
 }
 
 h3 {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	font-family: 'VT323', cursive;
 	font-size: 24px;
 }
@@ -170,6 +170,7 @@ a:hover {
 	width: 200px;
 	color: #fff;
 	background: #006600;
+	cursor: pointer;
 }
 
 .loginForm input[type="submit"]:hover {
@@ -183,7 +184,22 @@ a:hover {
 }
 
 
+/* ------------------------------------------ Error Page ------------------------------------------ */
+.errorPage {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
 
+.errorPage h1 {
+	margin-bottom: 0px;
+}
 
+.errorPage .failPic {
+	width: 500px;
+	height: 304px;
+	margin-bottom: 20px;
+	background: url("/images/fail.jpg") no-repeat;
+}
 
 
