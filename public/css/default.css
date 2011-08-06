@@ -1,0 +1,47 @@
+@CHARSET "UTF-8"; 
+
+/* CSS reset */
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, details,
+div, dd, del, dl, dfn, dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe,
+img, input, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, s, samp, section, small, span, strike, strong, sub,
+summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 1em;
+	font-family: Arial, sans-serif;
+	vertical-align: baseline;
+}
+
+input, select { vertical-align: middle; }
+
+ul, ol { list-style: none }
+
+article, aside, details, dialog, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+:link, :visited { border: 0; outline: 0; }
+
+blockquote:before, blockquote:after, q:before, q:after { content:''; }
+blockquote, q { quotes:"" ""; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; float: none !important; }
+table, th, td { vertical-align: middle; }
+
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+
+div.hr hr { display: none; }
+div.hr { height: 1px; border-top: 1px dashed #666; margin-bottom: 10px; }
+
+/* ------------------------------------------ Start Site Styling ------------------------------------------ */
+.pageContainer {
+	width: 300px;
+	border: 1px solid #000;
+	margin: 0 auto;
+}
+
+
+
