@@ -185,12 +185,12 @@ a:hover {
 
 
 /* ------------------------------------------ Error Page ------------------------------------------ */
-.errorPage { 
-	width: 500px; 
+.errorPage {
+	width: 500px;
 	margin: 0 auto;
-	text-align: center; 
+	text-align: center;
 }
- 
+
 .errorPage h1 {
 	margin-bottom: 0px;
 }
