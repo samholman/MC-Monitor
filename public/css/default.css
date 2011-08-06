@@ -37,3 +37,11 @@ div.hr hr { display: none; }
 div.hr { height: 1px; border-top: 1px dashed #666; margin-bottom: 10px; }
 
 /* ------------------------------------------ Start Site Styling ------------------------------------------ */
+.pageContainer {
+	width: 300px;
+	border: 1px solid #000;
+	margin: 0 auto;
+}
+
+
+
