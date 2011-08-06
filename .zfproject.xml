@@ -15,6 +15,9 @@
         <controllerFile controllerName="Login">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Server">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Login"/>
@@ -35,6 +38,9 @@
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Login">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Server">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
@@ -73,6 +79,9 @@
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index"/>
           <testApplicationControllerFile forControllerName="Login">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Server">
             <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
