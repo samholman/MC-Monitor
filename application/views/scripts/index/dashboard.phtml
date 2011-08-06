@@ -13,8 +13,8 @@
 			<h2>Players</h2>
 			<?php 
 				foreach ($this->playerList as $player) { ?>
-					<div class="player online">
-						<a class="name"><?php $player->getUsername(); ?> <span class="status">(<?php $player->isOnline() ? 'online' : 'offline';?>)</span></a>
+					<div class="player <?php echo $player->isOnline() ? 'online' : 'offline';?>">
+						<a class="name"><?php echo $player->getUsername(); ?> <span class="status">(<?php echo $player->isOnline() ? 'online' : 'offline';?>)</span></a>
 						<div class="info"></div>
 					</div>
 			<?php 
