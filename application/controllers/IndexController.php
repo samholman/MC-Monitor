@@ -32,7 +32,7 @@ class IndexController extends Zend_Controller_Action
      */
     public function dashboardAction()
     {
-        $playerList = Application_Model_PlayerList::get();
-        $this->view->playerList = $playerList->getIterator();
+    	$playerList = Application_Model_PlayerList::get();
+    	$this->view->playerList = $playerList->getIterator();
     }
 }

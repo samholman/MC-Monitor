@@ -1,14 +1,14 @@
 <?php
 
 /**
- * The server model handles starting and stopping the server, etc
+ * The server model handles starting and stopping the server and sending commands
  */
 class Application_Model_Server
 {
 	const
-		COMMANDS_FILE = '/tmp/mc-monitor-commands',
-		RESULTS_FILE  = '/tmp/mc-monitor-results',
-		PID_FILE  = '/tmp/mc-monitor-pid';
+		COMMANDS_FILE = '/../tmp/mc-monitor.commands',
+		RESULTS_FILE  = '/../tmp/mc-monitor.results',
+		PID_FILE  	  = '/../tmp/mc-monitor.pid';
 	
 	private
 		$_pid,
@@ -27,7 +27,38 @@ class Application_Model_Server
 	 */
 	public function isRunning()
 	{
-		return file_exists(self::PID_FILE);
+		if (file_exists(APPLICATION_PATH . self::PID_FILE))
+		{
+			$pid = file_get_contents(APPLICATION_PATH . self::PID_FILE);
+			
+			if ($this->processExists($pid)) {
+				return true;
+			}
+			
+			//unlink(APPLICATION_PATH . self::PID_FILE);
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Returns whether or not the process identified by pid is running
+	 * 
+	 * @param int $pid
+	 * @return bool
+	 */
+	private function processExists($pid)
+	{
+		if (strtolower(substr(PHP_OS, 0,3)) == 'win')
+		{
+			$result = exec('tasklist /v');
+		}
+		else
+		{
+			$result = exec('ps -p ' . $pid);
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -42,7 +73,7 @@ class Application_Model_Server
 		
 		$this->_process = proc_open('java -Xmx1024M -Xms1024M -jar ' . $jarPath . ' nogui 2>&1', $this->_descriptorSpec, $this->_pipes, $worldPath);
 		$status = proc_get_status($this->_process);
-		file_put_contents(self::PID_FILE, $status['pid']);
+		file_put_contents(APPLICATION_PATH . self::PID_FILE, $status['pid']);
 		
 		if ($this->isRunning())
 		{
@@ -56,8 +87,8 @@ class Application_Model_Server
 			{
 				sleep(1);
 				
-				$commands = file(self::COMMANDS_FILE);
-				file_put_contents(self::COMMANDS_FILE, '');
+				$commands = file(APPLICATION_PATH . self::COMMANDS_FILE);
+				file_put_contents(APPLICATION_PATH . self::COMMANDS_FILE, '');
 				
 				if (is_array($commands) && !empty($commands))
 				{
@@ -69,7 +100,7 @@ class Application_Model_Server
 				$output = stream_get_contents($this->_pipes[1]);
 				
 				if (!empty($output)) {
-					file_put_contents(self::RESULTS_FILE, trim($output));
+					file_put_contents(APPLICATION_PATH . self::RESULTS_FILE, trim($output));
 				}
 			}
 			
@@ -107,9 +138,9 @@ class Application_Model_Server
 	 */
 	public static function shutdownHandler()
 	{
-		unlink(self::COMMANDS_FILE);
-		unlink(self::RESULTS_FILE);
-		unlink(self::PID_FILE);
+		unlink(APPLICATION_PATH . self::COMMANDS_FILE);
+		unlink(APPLICATION_PATH . self::RESULTS_FILE);
+		unlink(APPLICATION_PATH . self::PID_FILE);
 	}
 	
 	/**
@@ -124,14 +155,14 @@ class Application_Model_Server
 			throw new Zend_Exception('server_not_running');
 		}
 		
-		file_put_contents(self::COMMANDS_FILE, trim($command) . "\n");
+		file_put_contents(APPLICATION_PATH . self::COMMANDS_FILE, trim($command) . "\n");
 		$result = false;
 		
 		while (!$result) {
-			$result = file_get_contents(self::RESULTS_FILE);
+			$result = file_get_contents(APPLICATION_PATH . self::RESULTS_FILE);
 		}
 		
-		file_put_contents(self::RESULTS_FILE, '');
+		file_put_contents(APPLICATION_PATH . self::RESULTS_FILE, '');
 		return $result;
 	}
 	
