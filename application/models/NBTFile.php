@@ -25,6 +25,7 @@ class Application_Model_NBTFile
 		$data = $this->getRawData($path);
 		$data = str_split($data);
 		$this->parseData($data, $output);
+		print_r($data);
 		print_r($output);
 	}
 
@@ -55,48 +56,54 @@ class Application_Model_NBTFile
 	 * @param array $data
 	 * @return array
 	 */
-	public function parseData(&$data, &$current, $names=true)
+	public function parseData(&$data, &$current)
 	{
 		while ($char = current($data))
 		{
-			switch (ord($char))
-			{
-				case self::TAG_COMPOUND;
-					$name = $this->parseTagName($data);
-					$current[$name] = array();
-					$this->parseData($data, $current[$name]);					
-					break;
-				
-				case self::TAG_END;
-					return;
-					break;
-					
-				case self::TAG_BYTE_ARRAY:	
-				case self::TAG_STRING:
-					$name = $this->parseTagName($data);
-					$current[$name] = $this->parseString($data);
-					break;
-					
-				case self::TAG_BYTE:
-					$name = $this->parseTagName($data);
-					$current[$name] = $this->parseInt($data, 1);
-					break;
-					
-				case self::TAG_SHORT:
-					$name = $this->parseTagName($data);
-					$current[$name] = $this->parseInt($data, 2);
-					break;
-				case self::TAG_INT:
-					$name = $this->parseTagName($data);
-					$current[$name] = $this->parseInt($data, 4);
-					break;
-				case self::TAG_LONG:
-					$name = $this->parseTagName($data);
-					$current[$name] = $this->parseInt($data, 8);
-					break;
+			if (ord($char) == self::TAG_END) {
+				return;
 			}
 			
+			$name = $this->parseTagName($data);
+			$this->parseNextValue(ord($char), $data, $current, $name);
+			
 			next($data);
+		}
+	}
+	
+	private function parseNextValue($tag, &$data, &$current, $name)
+	{
+		switch ($tag)
+		{
+			case self::TAG_COMPOUND;
+				$current[$name] = array();
+				next($data);
+				$this->parseData($data, $current[$name]);					
+				break;
+				
+			case self::TAG_BYTE_ARRAY:	
+			case self::TAG_STRING:
+				$current[$name] = $this->parseString($data);
+				break;
+				
+			case self::TAG_BYTE:
+				$current[$name] = $this->parseInt($data, 1);
+				break;
+				
+			case self::TAG_SHORT:
+				$current[$name] = $this->parseInt($data, 2);
+				break;
+			case self::TAG_INT:
+				$current[$name] = $this->parseInt($data, 4);
+				break;
+			case self::TAG_LONG:
+				$current[$name] = $this->parseInt($data, 8);
+				break;
+				
+			case self::TAG_LIST:
+				//$name = $this->parseTagName($data);
+				//$current[$name] = $this->parseInt($data, 8);
+				break;
 		}
 	}
 	
@@ -115,7 +122,7 @@ class Application_Model_NBTFile
 		for ($i=0; $i<$length; $i++) {
 			$string .= next($data);
 		}
-		
+
 		return $string;
 	}
 	
