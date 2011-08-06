@@ -25,7 +25,7 @@ ul, ol { list-style: none }
 /* ------------------------------------------ Start Site Styling ------------------------------------------ */
 body {
 	background: url("/images/bg.png") repeat;
-	font-size: 15px;
+	font-size: 16px;
 	color: #000;
 }
 
@@ -55,9 +55,44 @@ body {
 }
 
 
+/* ------------------------------------------ Default Text ------------------------------------------ */
+p {
+	margin-bottom: 20px;
+}
+
+h1 {
+	margin-bottom: 20px;
+	font-family: 'VT323', cursive;
+	font-size: 28px;
+}
+
+h2 {
+	margin-bottom: 20px;
+	font-family: 'VT323', cursive;
+	font-size: 26px;
+}
+
+h3 {
+	margin-bottom: 20px;
+	font-family: 'VT323', cursive;
+	font-size: 24px;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #009900;
+	text-decoration: underline;
+}
+
+
 /* ------------------------------------------ Header ------------------------------------------ */
 .header {
 	height: 110px;
+	margin-bottom: 20px;
 	position: relative;
 	overflow: hidden;
 }
@@ -90,12 +125,11 @@ body {
 .header .nav a {
 	font-family: 'VT323', cursive;
 	font-size: 24px;
-	color: #000;
 	text-decoration: none;
 }
 
 .header .nav a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .header .bar {
@@ -107,39 +141,45 @@ body {
 	z-index: 1;
 }
 
-/* ------------------------------------------ Default Text ------------------------------------------ */
-p {
-	margin-bottom: 20px;
-}
-
-h1 {
-	margin-bottom: 20px;
-	font-family: 'VT323', cursive;
-	font-size: 24px;
-}
-
-h2 {
-	margin-bottom: 20px;
-	font-family: 'VT323', cursive;
-	font-size: 22px;
-}
-
-h3 {
-	margin-bottom: 20px;
-	font-family: 'VT323', cursive;
-	font-size: 20px;
-}
-
 
 /* ------------------------------------------ Login Form ------------------------------------------ */
+.loginForm {
+	width: 400px;
+	margin: 0 auto;
+}
+
 .loginForm label {
-	margin-bottom: 10px;
+	margin-bottom: 0px;
+	font-size: 18px;
 	display: block;
 }
 
 .loginForm input {
-	margin-bottom: 10px;
+	width: 388px;
+	padding: 3px 5px;
+	margin-bottom: 15px;
+	border: 1px solid #000;
 	display: block;
+}
+
+.loginForm input:focus {
+	border: 1px solid #009900;
+}
+
+.loginForm input[type="submit"] {
+	width: 200px;
+	color: #fff;
+	background: #006600;
+}
+
+.loginForm input[type="submit"]:hover {
+	background: #009900;
+}
+
+.loginForm .errors {
+	color: #cc0000;
+	position: relative;
+	top: -15px;
 }
 
 
