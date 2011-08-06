@@ -16,7 +16,13 @@ class IndexController extends Zend_Controller_Action
         if (!$session->username) {
         	$this->_forward('index', 'login');
         }
-        
+        else {
+        	$this->_forward('dashboard');
+        }
+    }
+    
+    public function dashboardAction()
+    {
         $playerList = Application_Model_PlayerList::get();
         $this->view->playerList = $playerList->getIterator();
     }
