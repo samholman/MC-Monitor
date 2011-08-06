@@ -2,7 +2,13 @@
 
 class ErrorController extends Zend_Controller_Action
 {
-
+	
+	public function init()
+    {
+        $this->view->header = $this->view->render('header.phtml');
+        $this->view->footer = $this->view->render('footer.phtml');
+    }
+    
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');

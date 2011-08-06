@@ -17,11 +17,11 @@ class Application_Model_User
 	public function authenticate($username, $password)
 	{
 		$client = new Zend_Http_Client();
-		$client->setUri('https://login.minecraft.net');
+		$client->setUri('https://login.minecraft.net/');
 		
 		$client->setParameterPost('user', $username);
 		$client->setParameterPost('password', $password);
-		$client->setParameterPost('version', 12);
+		$client->setParameterPost('version', 9999);
 		
 		$client->setHeaders('Content-Type', 'application/x-www-form-urlencoded');
 		
