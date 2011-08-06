@@ -56,6 +56,10 @@ class Application_Model_Server
 		else
 		{
 			$result = exec('ps -p ' . $pid);
+			
+			if (substr($result, 0, strlen($pid)) == $pid) {
+				return true;
+			}
 		}
 		
 		return false;
