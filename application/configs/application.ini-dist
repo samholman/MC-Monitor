@@ -11,6 +11,8 @@ resources.frontController.params.displayExceptions = 0
 minecraft.serverPath = "/opt/local/minecraft_server.jar"
 minecraft.worldPath = "/opt/local/minecraft"
 
+c10t.path = "/home/tom/software/c10t/c10t"
+
 [staging : production]
 
 [testing : production]
