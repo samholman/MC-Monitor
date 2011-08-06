@@ -8,8 +8,9 @@ class UserModelTest extends PHPUnit_Framework_TestCase
         parent::setUp();
     }
     
-    public function testStart()
+    public function testFailedAuth()
     {
     	$user = new Application_Model_User();
+    	$this->assertFalse($user->authenticate('thisisafailed', 'login'));
     }
 }
