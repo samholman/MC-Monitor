@@ -202,14 +202,16 @@ a:hover {
 
 
 /* ------------------------------------------ Dashboard ------------------------------------------ */
-.mapBox {
-	min-height:200px;
-}
-
 .mapBox { 
 	width: 100%;
 	margin-bottom: 20px;
 	border: 1px solid red;
+	overflow: hidden;
+	position: relative;
+}
+
+.map { 
+	position: relative;
 }
 
 .serverStats { 
