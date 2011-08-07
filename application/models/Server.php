@@ -51,15 +51,13 @@ class Application_Model_Server
 	{
 		if (strtolower(substr(PHP_OS, 0,3)) == 'win')
 		{
-			$result = exec('tasklist /v');
+			$result = exec('tasklist /FI "PID eq ' . $pid . '"');
+			return substr($result, 0, 14) != 'INFO: No tasks';
 		}
 		else
 		{
 			$result = exec('ps -p ' . $pid);
-			
-			if (substr($result, 0, strlen($pid)) == $pid) {
-				return true;
-			}
+			return substr($result, 0, strlen($pid)) == $pid;
 		}
 		
 		return false;
