@@ -49,7 +49,7 @@ class Application_Model_Server
 	 */
 	private function processExists($pid)
 	{
-		if (strtolower(substr(PHP_OS, 0,3)) == 'win')
+		if (strtolower(substr(PHP_OS, 0, 3)) == 'win')
 		{
 			$result = exec('tasklist /FI "PID eq ' . $pid . '"');
 			return substr($result, 0, 14) != 'INFO: No tasks';
