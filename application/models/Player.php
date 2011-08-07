@@ -72,7 +72,7 @@ class Application_Model_Player
 	 */
 	public function getSkin()
 	{
-		return null;
+		return new Application_Model_PlayerSkin($this->_username);
 	}
 	
 	/**
