@@ -76,7 +76,7 @@ class Application_Model_Server
 		$jarPath   = Zend_Registry::get('config')->get('minecraft')->get('serverPath');
 		$worldPath = Zend_Registry::get('config')->get('minecraft')->get('worldPath');
 		
-		$this->_process = proc_open('java -Xmx1024M -Xms1024M -jar ' . $jarPath . ' nogui 2>&1', $this->_descriptorSpec, $this->_pipes, $worldPath);
+		$this->_process = proc_open('java -Xmx256M -Xms256M -jar ' . $jarPath . ' nogui 2>&1', $this->_descriptorSpec, $this->_pipes, $worldPath);
 		$status = proc_get_status($this->_process);
 		file_put_contents(APPLICATION_PATH . self::PID_FILE, $status['pid']);
 		
