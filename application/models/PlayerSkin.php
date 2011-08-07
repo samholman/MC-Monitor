@@ -17,10 +17,8 @@ class Application_Model_PlayerSkin
 	 */
 	public function getTexture()
 	{
-		$path = realpath(APPLICATION_PATH . '/../tmpskins') . '/' . $this->_username . '.png';
-		
 		$data = file_get_contents('http://s3.amazonaws.com/MinecraftSkins/' . $this->_username . '.png');
-		file_put_contents($path, $data);
+		file_put_contents($this->getTexturePath(), $data);
 	}
 	
 	/**
@@ -28,7 +26,23 @@ class Application_Model_PlayerSkin
 	 */
 	public function render()
 	{
-		
+		if (file_exists($this->getTexturePath()))
+		{
+			header ('Content-Type: image/png');
+			$renderer = new Application_Model_SkinRenderer();
+			$renderer->AssignSkinFromFile($this->getTexturePath());
+			$img = $renderer->CombinedImage(5);
+			imagepng($img);
+			imagedestroy($img);
+		}
+		else {
+			throw new Exception('Texture file not present');
+		}
+	}
+	
+	private function getTexturePath()
+	{
+		return realpath(APPLICATION_PATH . '/../tmp/skins') . '/' . $this->_username . '.png';
 	}
 }
 
