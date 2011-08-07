@@ -23,6 +23,8 @@ class Application_Model_PlayerSkin
 	
 	/**
 	 * Uses GD to render a model of the player and output the result
+	 * 
+	 * @return void
 	 */
 	public function render()
 	{
@@ -40,6 +42,11 @@ class Application_Model_PlayerSkin
 		}
 	}
 	
+	/**
+	 * Gets the path to the texture file
+	 * 
+	 * @return string
+	 */
 	private function getTexturePath()
 	{
 		return realpath(APPLICATION_PATH . '/../tmp/skins') . '/' . $this->_username . '.png';
