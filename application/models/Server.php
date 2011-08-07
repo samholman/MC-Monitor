@@ -19,6 +19,9 @@ class Application_Model_Server
 			array('pipe', 'w'),
 			array('pipe', 'w'),
 		);
+		
+	private static
+		$_playersArray;
 	
 	/**
 	 * Returns whether or not the Minecraft server is running
@@ -79,15 +82,18 @@ class Application_Model_Server
 		
 		if ($this->isRunning())
 		{
-			register_shutdown_function(array('Application_Model_Server', 'shutdownHandler'));
+			touch(APPLICATION_PATH . self::COMMANDS_FILE);
+			touch(APPLICATION_PATH . self::RESULTS_FILE);
 			
 			stream_set_blocking($this->_pipes[0], false);
 			stream_set_blocking($this->_pipes[1], false);
 			stream_set_blocking($this->_pipes[2], false);
 			
+			$timer = 0;
+			
 			while (true)
 			{
-				sleep(1);
+				//sleep(1);
 				
 				$commands = file(APPLICATION_PATH . self::COMMANDS_FILE);
 				file_put_contents(APPLICATION_PATH . self::COMMANDS_FILE, '');
@@ -103,6 +109,16 @@ class Application_Model_Server
 				
 				if (!empty($output)) {
 					file_put_contents(APPLICATION_PATH . self::RESULTS_FILE, trim($output));
+				}
+				
+				if (!$timer) {
+					exec('php ' . APPLICATION_PATH . '/../regenerate.php');
+				}
+				
+				$timer++;
+				
+				if ($timer >= Zend_Registry::get('config')->get('regenerateTime')) {
+					$timer = 0;
 				}
 			}
 			
@@ -128,21 +144,12 @@ class Application_Model_Server
 			//$status = proc_get_status($this->_process);
 			//exec('kill ' . $status['pid']);
 			
-			self::shutdownHandler();
+			unlink(APPLICATION_PATH . self::COMMANDS_FILE);
+			unlink(APPLICATION_PATH . self::RESULTS_FILE);
+			unlink(APPLICATION_PATH . self::PID_FILE);
+			
 			return proc_close($this->_process);
 		}
-	}
-	
-	/**
-	 * Delete the temp files
-	 * 
-	 * @return void
-	 */
-	public static function shutdownHandler()
-	{
-		unlink(APPLICATION_PATH . self::COMMANDS_FILE);
-		unlink(APPLICATION_PATH . self::RESULTS_FILE);
-		unlink(APPLICATION_PATH . self::PID_FILE);
 	}
 	
 	/**
@@ -175,30 +182,36 @@ class Application_Model_Server
 	 */
 	public function getOnlinePlayers()
 	{
-		$playersArray = false;
-		
-		do
+		if (!is_array(self::$_playersArray))
 		{
-			$players = $this->runCommand('list');
+			$result = false;
+			self::$_playersArray = array();
 			
-			if (substr($players, 27, 18) == 'Connected players:')
+			do
 			{
-				$players = substr($players, 46);
-				$playersArray = explode(',', $players);
+				$players = $this->runCommand('list');
 				
-				foreach ($playersArray as $key => &$player)
+				if (substr($players, 27, 18) == 'Connected players:')
 				{
-					$player = trim($player);
+					$result = true;
 					
-					if (empty($player)) {
-						unset($playersArray[$key]);
+					$players = substr($players, 46);
+					self::$_playersArray = explode(',', $players);
+					
+					foreach (self::$_playersArray as $key => &$player)
+					{
+						$player = trim($player);
+						
+						if (empty($player)) {
+							unset(self::$_playersArray[$key]);
+						}
 					}
 				}
 			}
+			while (!$result);
 		}
-		while (!is_array($playersArray));
 		
-		return $playersArray;
+		return self::$_playersArray;
 	}
 	
 	/**
