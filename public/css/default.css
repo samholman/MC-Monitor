@@ -207,6 +207,11 @@ a:hover {
 	margin-bottom: 20px;
 	border: 1px solid red;
 	overflow: hidden;
+	position: relative;
+}
+
+.map { 
+	position: relative;
 }
 
 .serverStats { 
