@@ -34,6 +34,7 @@
         <modelFile modelName="PlayerList"/>
         <modelFile modelName="Iterator"/>
         <modelFile modelName="Map"/>
+        <modelFile modelName="PlayerSkin"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
