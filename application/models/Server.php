@@ -224,8 +224,11 @@ class Application_Model_Server
 		
 		foreach ($data as $property)
 		{
-			list($key, $value) = explode('=', $property, 2);
-			$output[$key] = $value;
+			if (strpos($property, '=') != false)
+			{
+				list($key, $value) = explode('=', $property, 2);
+				$output[$key] = $value;
+			}
 		}
 		
 		return $output;
